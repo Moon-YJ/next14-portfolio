@@ -11,7 +11,7 @@ async function fetchYoutube() {
 	const baseURL = `https://www.googleapis.com/youtube/v3/playlistItems?key=${api_key}&part=snippet&playlistId=${pid}&maxResults=${num}`;
 	const data = await fetch(baseURL);
 	const json = await data.json();
-	return json;
+	return json.items;
 }
 
 export default async function Youtube() {
@@ -22,13 +22,12 @@ export default async function Youtube() {
 	return (
 		<section className={clsx(styles.youtube)}>
 			<h1>Youtube</h1>
-			{data.items.map((data, idx) => {
+			{data.map((data, idx) => {
 				const [date, time] = data.snippet.publishedAt.split('T');
 
 				return (
 					<article key={data.id + idx}>
 						<h2>{shortenText(data.snippet.title, 50)}</h2>
-
 						<div className={clsx(styles.txt)}>
 							<p>{shortenText(data.snippet.description, 250)}</p>
 							<div className={clsx(styles.infoBox)}>
@@ -36,7 +35,6 @@ export default async function Youtube() {
 								<em>{time.split('Z')[0]}</em>
 							</div>
 						</div>
-
 						<div className={clsx(styles.pic)}>
 							<Link href={`/youtube/${data.id}`} prefetch={idx < 6 ? false : true}>
 								<Image
