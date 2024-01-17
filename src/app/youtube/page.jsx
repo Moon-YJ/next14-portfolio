@@ -38,12 +38,12 @@ export default async function Youtube() {
 						</div>
 
 						<div className={clsx(styles.pic)}>
-							<Link href={`/youtube/${data.id}`}>
+							<Link href={`/youtube/${data.id}`} prefetch={idx < 6 ? false : true}>
 								<Image
 									src={data.snippet.thumbnails.standard.url}
 									alt={data.snippet.title}
 									fill
-									priority
+									priority={idx < 4 ? true : false}
 									sizes='(max-width: 768px) 70vw, (max-width: 1200px) 50vw, 30vw'
 								/>
 							</Link>
