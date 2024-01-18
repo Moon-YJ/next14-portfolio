@@ -4,4 +4,59 @@
 			color: var(--pointColor);
 		}
 	}
+	.switch {
+		position: relative;
+		width: 140px;
+		height: 40px;
+		font-size: 0.8rem;
+		background-color: #fff;
+		border-radius: 20px;
+		cursor: pointer;
+		overflow: hidden;
+		&::before {
+			content: 'Login';
+			position: absolute;
+			top: 50%;
+			left: 15%;
+			color: var(--baseColor);
+			transform: translateY(-50%);
+			transition: 0.4s;
+		}
+		.ball {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			top: 50%;
+			right: 0;
+			width: 55%;
+			height: 100%;
+			background-color: var(--baseColor);
+			border-radius: 35px;
+			transform: translateY(-50%);
+			&::before {
+				content: 'Sign up';
+				position: absolute;
+				top: 50%;
+				right: 20%;
+				color: var(--bgColor);
+				transform: translateY(-50%);
+				transition: 0.4s;
+			}
+		}
+		&.checked {
+			&::before {
+				content: 'Sign up';
+				left: 58%;
+				color: var(--baseColor);
+			}
+			.ball {
+				left: 0;
+				&::before {
+					content: 'Login';
+					left: 28%;
+				}
+			}
+		}
+	}
 }
