@@ -4,7 +4,9 @@ import { Post } from './models';
 export const getPost = async () => {
 	try {
 		connectDB();
-		const posts = await Post.find();
+		let posts = null;
+		if (id) posts = await Post.findeById(id);
+		else posts = await Post.find();
 		return posts;
 	} catch (err) {
 		console.log('err');
